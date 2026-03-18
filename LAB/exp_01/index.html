@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EXPERIMENT_01</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <div id="subjectsContainer">
-        <h1>Enter the number of subjects</h1>
-        <input type="number" id="subjects" placeholder="Enter number of subjects">
-        <button id="enterMarks">Enter Marks</button>
+    <div class="card">
+        <div id="setupStep">
+            <h1>Grade Calculator</h1>
+            <p>How many subjects are you calculating?</p>
+            <input type="number" id="subjectCount" placeholder="e.g. 5">
+            <button id="setupBtn" class="btn-primary">Generate Inputs</button>
         </div>
     
-        <div id="marksInputContainer" class="hidden">
-            <h1>Enter the marks for each subject</h1>
+        <div id="inputStep" class="hidden">
+            <h1>Enter Marks</h1>
+            <div id="marksList"></div>
+            <div class="button-group">
+                <button id="calcBtn" class="btn-success">Calculate</button>
+                <button id="resetBtn" class="btn-outline">Reset</button>
+            </div>
         </div>
 
-        <p id="result" class="hidden"></p>
+        <div id="resultDisplay" class="hidden">
+            </div>
     </div>
-
 
     <script src="script.js"></script>
 </body>

@@ -1,87 +1,72 @@
-let subjects = document.querySelector('#subjects');
-let subjectsContainer = document.querySelector('#subjectsContainer');
+const subjectInput = document.getElementById('subjectCount');
+const setupStep = document.getElementById('setupStep');
+const inputStep = document.getElementById('inputStep');
+const marksList = document.getElementById('marksList');
+const resultDisplay = document.getElementById('resultDisplay');
 
-let marksInputContainer = document.querySelector('#marksInputContainer');
-
-function getGrades(marks)   {
-    if (marks >= 90) {
-        return 'A';
-    } else if (marks >= 80) {
-        return 'B';
-    } else if (marks >= 70) {
-        return 'C';
-    } else if (marks >= 60) {
-        return 'D';
-    } else {
-        return 'F';
-    }
+function getGrade(m) {
+    if (m >= 90) return 'A+';
+    if (m >= 80) return 'A';
+    if (m >= 70) return 'B';
+    if (m >= 60) return 'C';
+    if (m >= 50) return 'D';
+    return 'F';
 }
 
-function parseMarks(mark) {
-    if(mark > 100 || mark < 0) return false;
-    return true;
-}
+function generateInputs() {
+    const count = parseInt(subjectInput.value);
+    if (!count || count <= 0) return alert("Please enter a valid number");
 
-function calculateResult() {
-    let result = document.querySelector('#result');
-    let marksInputs = marksInputContainer.querySelectorAll('input');
-    let totalMarks = 0;
-    marksInputs.forEach(input => {
-        let m = parseFloat(input.value) || 0
-        if(!parseMarks(m)) {
-            alert('Please enter valid marks between 0 and 100');
-            return;
-        }
-        totalMarks += m;
-    })
-    result.innerHTML = '';
-    result.classList.remove('hidden');  
-
-    result.innerHTML += `<strong>Grades: </strong>`;
-    marksInputs.forEach((input, i) => {
-        result.innerHTML += `<br>${i + 1} <span>${getGrades(parseFloat(input.value) || 0)}</span>`;
-    });
-
-    result.innerHTML += `<br>Total Marks: <strong>${totalMarks}</strong>`;
-    result.innerHTML += `<br>Average Marks: <strong>${(totalMarks / marksInputs.length).toFixed(2)}</strong>`;
-    result.innerHTML += `<br>Overall Grade: <strong>${getGrades(totalMarks / marksInputs.length)}</strong>`;
-}
-
-function showMarksInput() {
-    let noOfSubjects = subjects.value;
-    subjectsContainer.classList.add('hidden');
-    marksInputContainer.classList.remove('hidden');
-
-    Array.from({ length: noOfSubjects }, () => {
-       let input = document.createElement('input');
+    marksList.innerHTML = ''; // Clear previous inputs
+    for (let i = 1; i <= count; i++) {
+        const input = document.createElement('input');
         input.type = 'number';
-        input.placeholder = `Enter marks`;
-        marksInputContainer.appendChild(input);
-    });
+        input.placeholder = `Subject ${i} Marks`;
+        input.className = 'mark-input';
+        marksList.appendChild(input);
+    }
 
-    let div = document.createElement('div');
-    div.classList.add('buttons');
-
-
-      let btn = document.createElement('button');
-      btn.setAttribute('id', 'calculateBtn');
-       btn.innerText = 'Calculate';
-    div.appendChild(btn);
-    btn.addEventListener('click', calculateResult);
-
-      let resetBtn = document.createElement('button');
-      resetBtn.setAttribute('id', 'resetBtn');
-      resetBtn.innerText = 'Reset';
-    div.appendChild(resetBtn);
-    marksInputContainer.appendChild(div);
-
-
-    resetBtn.addEventListener('click', () => {
-        marksInputContainer.classList.add('hidden');
-        result.classList.add('hidden');
-        subjectsContainer.classList.remove('hidden');
-
-    });
+    setupStep.classList.add('hidden');
+    inputStep.classList.remove('hidden');
 }
 
-document.querySelector("#enterMarks").addEventListener("click", showMarksInput);
+function calculate() {
+    const inputs = document.querySelectorAll('.mark-input');
+    let total = 0;
+    let html = `<h3>Report Card</h3><br>`;
+    let isValid = true;
+
+    inputs.forEach((input, index) => {
+        const val = parseFloat(input.value) || 0;
+        if (val < 0 || val > 100) isValid = false;
+        
+        total += val;
+        html += `
+            <div class="result-item">
+                <span>Subject ${index + 1}:</span>
+                <span class="grade-badge">${getGrade(val)}</span>
+            </div>`;
+    });
+
+    if (!isValid) return alert("Marks must be between 0 and 100");
+
+    const avg = total / inputs.length;
+    html += `<hr style="margin:10px 0; border:1px solid #eee">`;
+    html += `<div class="result-item"><strong>Total:</strong> <span>${total}</span></div>`;
+    html += `<div class="result-item"><strong>Average:</strong> <span>${avg.toFixed(2)}%</span></div>`;
+    html += `<div class="result-item"><strong>Final Grade:</strong> <span class="grade-badge">${getGrade(avg)}</span></div>`;
+
+    resultDisplay.innerHTML = html;
+    resultDisplay.classList.remove('hidden');
+}
+
+function reset() {
+    inputStep.classList.add('hidden');
+    resultDisplay.classList.add('hidden');
+    setupStep.classList.remove('hidden');
+    subjectInput.value = '';
+}
+
+document.getElementById('setupBtn').addEventListener('click', generateInputs);
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('resetBtn').addEventListener('click', reset);
