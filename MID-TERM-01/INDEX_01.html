@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f2a52;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .dashboard {
+            background: rgb(8, 69, 83);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 650px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .setup-box {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .subject-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .sub-name { flex: 2; }
+        .sub-marks { flex: 1; }
+        .sub-total { flex: 1; }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .btn-setup {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-calc {
+            background-color: #28a745;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        #resultDisplay {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1>Result Calculator</h1>
+
+        <div class="setup-box">
+            <label>No. of Subjects: </label>
+            <input type="number" id="numCount" min="1">
+            <button class="btn-setup" onclick="createInputs()">Set</button>
+        </div>
+
+        <div id="dynamicForm"></div>
+
+        <div id="resultDisplay">
+            <button class="btn-calc" onclick="calculateResult()">Calculate</button>
+            <h2 id="finalOutput"></h2>
+        </div>
+    </div>
+
+    <script>
+        function createInputs() {
+            const count = document.getElementById('numCount').value;
+            const formContainer = document.getElementById('dynamicForm');
+            const resultArea = document.getElementById('resultDisplay');
+
+            formContainer.innerHTML = "";
+
+            if (count <= 0) {
+                alert("Enter a valid number");
+                return;
+            }
+
+            const header = document.createElement('div');
+            header.className = 'subject-row';
+            header.style.fontWeight = 'bold';
+            header.innerHTML = `
+                <div style="flex:2">Subject Name</div>
+                <div style="flex:1">Marks</div>
+                <div style="flex:1">Total Out Of</div>
+            `;
+            formContainer.appendChild(header);
+
+            for (let i = 1; i <= count; i++) {
+                const row = document.createElement('div');
+                row.className = 'subject-row';
+                row.innerHTML = `
+                    <input type="text" class="sub-name" placeholder="Subject ${i}">
+                    <input type="number" class="sub-marks" placeholder="Obtained">
+                    <input type="number" class="sub-total" placeholder="Maximum">
+                `;
+                formContainer.appendChild(row);
+            }
+
+            resultArea.style.display = "block";
+        }
+
+        function calculateResult() {
+            const marksInputs = document.getElementsByClassName('sub-marks');
+            const totalInputs = document.getElementsByClassName('sub-total');
+
+            let totalObtained = 0;
+            let totalMaximum = 0;
+
+            for (let i = 0; i < marksInputs.length; i++) {
+                let m = parseFloat(marksInputs[i].value) || 0;
+                let t = parseFloat(totalInputs[i].value) || 0;
+
+                totalObtained += m;
+                totalMaximum += t;
+            }
+
+            if (totalMaximum === 0) {
+                alert("Total cannot be zero");
+                return;
+            }
+
+            let percentage = (totalObtained / totalMaximum) * 100;
+
+            document.getElementById('finalOutput').innerHTML = 
+                "Total: " + totalObtained + " / " + totalMaximum + "<br>" +
+                "Percentage: " + percentage.toFixed(2) + "%";
+        }
+    </script>
+
+</body>
+</html>
