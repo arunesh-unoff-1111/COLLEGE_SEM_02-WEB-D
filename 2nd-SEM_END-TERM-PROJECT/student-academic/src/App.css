@@ -1,0 +1,99 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-layout {
+  width: 260px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.dashboard-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.notif-btn {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.semester-select {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Dashboard Component Grid Structure */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.dashboard-footer {
+  background: var(--bg-secondary);
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .sidebar-layout {
+    width: 100%;
+  }
+  .main-content {
+    padding: 20px;
+  }
+}

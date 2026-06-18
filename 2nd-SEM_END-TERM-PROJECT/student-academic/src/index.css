@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #0f1021;
+  --bg-secondary: #16172e;
+  --bg-card: #1c1d3a;
+  --bg-hover: #25274d;
+  --text-main: #ffffff;
+  --text-muted: #8b8da9;
+  
+  /* Accent Colors */
+  --purple: #8a70ff;
+  --blue: #3b82f6;
+  --green: #10b981;
+  --orange: #f97316;
+  --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 10px;
+}

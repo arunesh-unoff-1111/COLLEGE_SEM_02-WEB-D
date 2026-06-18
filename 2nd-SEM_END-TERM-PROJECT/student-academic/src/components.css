@@ -1,0 +1,304 @@
+/* Sidebar Styling */
+.sidebar-wrapper {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 40px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-section h2 {
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 12px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nav-item.active, .nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.sidebar-quote {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quote-mark {
+  font-size: 32px;
+  color: var(--purple);
+  line-height: 10px;
+}
+
+.quote-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* metrics container elements */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.metric-card {
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.metric-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Card layout blocks */
+.dashboard-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Color variations classes mapping */
+.purple { color: var(--purple); }
+.blue { color: var(--blue); }
+.green { color: var(--green); }
+.orange { color: var(--orange); }
+
+.date-badge.purple { background: rgba(138, 112, 255, 0.15); color: var(--purple); }
+.date-badge.blue { background: rgba(59, 130, 246, 0.15); color: var(--blue); }
+.date-badge.green { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+
+.dot.purple { background: var(--purple); }
+.dot.blue { background: var(--blue); }
+.dot.green { background: var(--green); }
+
+/* Schedule Timeline Setup */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+}
+
+.time-col {
+  width: 90px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.status-marker {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.details-col h4 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.details-col p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Exam lists styling rules */
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.exam-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.date-badge {
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  width: 60px;
+}
+
+.exam-details h4 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.exam-details p {
+  font-size: 12px;
+}
+
+/* Graphical Representation Layout Rules */
+.chart-container {
+  display: flex;
+  height: 180px;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 11px;
+  height: 85%;
+}
+
+.bars-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-grow: 1;
+  height: 85%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  width: 30px;
+}
+
+.bar {
+  width: 100%;
+  background: var(--accent-gradient);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.day-label {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Custom Clock Controls */
+.centered-content {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.timer-circle-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(138, 112, 255, 0.2);
+}
+
+.timer-display h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.timer-display p {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Global Navigation Footers Action Knobs */
+.view-all-btn {
+  background: none;
+  border: none;
+  color: var(--purple);
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  margin-top: auto;
+}
+
+.action-btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
