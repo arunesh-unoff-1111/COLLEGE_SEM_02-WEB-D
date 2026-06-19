@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Student Result System</h1>
+        <p>Enter marks of 5 subjects to calculate total, percentage and result</p>
+    </header>
+
+    <div class="container">
+        <div class="left-panel">
+            <h2>Enter Marks</h2>
+            
+            <div class="input-group">
+                <label>Subject 1</label>
+                <input type="number" id="s1" value="0" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label>Subject 2</label>
+                <input type="number" id="s2" value="0" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label>Subject 3</label>
+                <input type="number" id="s3" value="0" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label>Subject 4</label>
+                <input type="number" id="s4" value="0" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label>Subject 5</label>
+                <input type="number" id="s5" value="0" min="0" max="100">
+            </div>
+
+            <button class="btn" onclick="runCalculations()">Calculate Result</button>
+        </div>
+
+        <div class="right-panel">
+            <div class="result-box">
+                <h2>Result</h2>
+
+                <div class="circle-progress">
+                    <span class="percent" id="circleDisplay">0%</span>
+                    <span class="label">Percentage</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="title">Result</span>
+                    <span class="val" id="outResult">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="title">Total Marks</span>
+                    <span class="val" id="outTotal">0 / 500</span>
+                </div>
+                <div class="info-row">
+                    <span class="title">Percentage</span>
+                    <span class="val" id="outPercent">0%</span>
+                </div>
+                <div class="info-row">
+                    <span class="title">Grade</span>
+                    <span class="val" id="outGrade">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Student Result System. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
